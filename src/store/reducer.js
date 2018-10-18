@@ -1,4 +1,4 @@
-import {CHANGE_INPUT_VALUE, ADD_ITEM ,DELETE_ITEM}  from './actionType'
+import {CHANGE_INPUT_VALUE, ADD_ITEM ,DELETE_ITEM,INIT_ITEM }  from './actionType'
 const  defaultState =  {
     inputValue:'',
     list:[]
@@ -9,6 +9,13 @@ export   default  (state=defaultState,action)=>{
      //redu 不能直接修改state
       const  newState = JSON.parse(JSON.stringify(state));
       newState.inputValue=action.value;
+      return  newState;
+   }
+   if(action.type === 'INIT_ITEM') {
+     //对state 做一次深拷贝
+     //redu 不能直接修改state
+      const  newState = JSON.parse(JSON.stringify(state));
+      newState.list=action.data;
       return  newState;
    }
    if(action.type === 'ADD_ITEM') {
